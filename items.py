@@ -53,6 +53,8 @@ DEFESA:\n\
             elif response==3 and player.coins>= self.value_item_armor_basic:
                 player.armor_ad+=self.armor_ad
                 player.armor_ap+=self.armor_ap
+                player.coins-=self.value_item_armor_basic
+                
             else:
                 print('ESSE ITEM NÃO ESTÁ DISPONÍVEL NO MOMENTO')
 
