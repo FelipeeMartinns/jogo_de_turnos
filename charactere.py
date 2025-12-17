@@ -6,7 +6,7 @@ class Charactere:
     def __init__(self,name=None,life=10,coins=None,skills=None,armor_ad=None,armor_ap=None,damage_ad=1,damage_ap=None):
         self.name=name
         self.life=life
-        self.charactere_coins=coins
+        self.coins=coins
         self.skills=skills
         self.armor_ad=armor_ad
         self.armor_ap=armor_ap
@@ -15,7 +15,15 @@ class Charactere:
 
     def creat_caractere(self):
 
-        self.name=input('Digite seu nome:\n')
+        while True:
+            self.name=input('Digite seu nome:\n')
+            confirm= input(f'você confimar o nome {self.name} ? [S]im ou [N]ão').upper()
+            if confirm.startswith('S') == True:
+                break
+    def status(self):
 
-    def mostrar_dinheiro(self):
-        return self.charactere_coins
+        return f'{self.name}\n\
+ATAQUE FÍSICO: {self.damage_ad}\n\
+ATAQUE MÁGICO: {self.damage_ap}\n\
+DEFESA: {self.armor_ad} AD | {self.armor_ap} AP\n\
+SKILLS: {self.skills}'

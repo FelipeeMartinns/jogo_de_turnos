@@ -38,10 +38,27 @@ ATAQUE MÁGICO:\n\
 DEFESA:\n\
 {self.name_armor_basic} -- {self.description_armor_basic}\n\
 {self.value_item_armor_basic} COINS\n[BUY->[3]<-]\n\n\n\
-                                                                        COINS= {player.mostrar_dinheiro()}')
-        
-        response=input('')
+                                                                        COINS= {player.coins}')
+        try:
+            response=int(input(''))
 
-        if response==1 and player.mostrar_dinheiro()>= self.value_item_sword:
-            self.damage_ad+=self.damage_ad_sword
+            if response==1 and player.coins>= self.value_item_sword:
+                player.damage_ad+=self.damage_ad_sword
+                player.coins-=self.value_item_sword
+                print('AD + 5')
+            elif response==2 and player.coins>= self.value_item_staff:
+                player.damage_ad+=self.damage_ap
+                player.coins-=self.value_item_staff
+                print('AP + 5')
+            elif response==3 and player.coins>= self.value_item_armor_basic:
+                player.armor_ad+=self.armor_ad
+                player.armor_ap+=self.armor_ap
+            else:
+                print('ESSE ITEM NÃO ESTÁ DISPONÍVEL NO MOMENTO')
+
         
+        except (ValueError):
+            print('DIGITE APENAS UM NUMERO DAS OPÇÕES DISPONÍVEIS.')
+
+        except Exception as e:
+            print(f'ERRO DESCONHECIDO: {e}')
