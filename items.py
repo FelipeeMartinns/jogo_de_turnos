@@ -22,7 +22,7 @@ class Items:
 
     def armor_basic(self):
         self.name_armor_basic='armadura'
-        self.value_item_armor_basic=5
+        self.value_item_armor_basic=10
         self.armor_ad=2
         self.armor_ap=2
         self.description_armor_basic='uma armadura normal que aumenta sua resistencia fisica e mágica em 2'

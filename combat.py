@@ -47,6 +47,11 @@ class Combat:
             self.player.defesa=True
 
         else:
+            print('life')
+            self.life_bar()
+            print('\n\n\n\n\n     ?')
+            print('🙈  🦤')
+            print('\n\n\n\n\n')
             print('vc pulou o turno!')
         input('                                                        [ENTER-->] ')
 
