@@ -3,7 +3,7 @@
 
 class Charactere:
 
-    def __init__(self,name=None,life=10,coins=None,skills=None,armor_ad=None,armor_ap=None,damage_ad=1,damage_ap=None):
+    def __init__(self,name=None,life=3,coins=None,skills=None,armor_ad=None,armor_ap=None,damage_ad=1,damage_ap=None):
         if name is None:
             self.name='player'
         else:

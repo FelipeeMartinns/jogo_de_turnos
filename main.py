@@ -6,13 +6,13 @@ from items import Items
 
 init_game=True
 
-level=1
 player=Charactere()
 player.creat_caractere()
 player.coins=10
-enemy=Enemy('monstro',10,1,damage_ad=1,weakness='fogo')
+enemy=Enemy('monstro',3,1,damage_ad=1,weakness='fogo',coins=5)
 while init_game:
     
+    level=1
     response=int(input(f'Deseja prosseguir para o level {level} ou ir a loja? [1]para prosseguir e [2]para abrir a loja ou [3] para exibir os status'))
     if response==1:
         Levels(player,enemy).selector_level(level)
@@ -23,3 +23,4 @@ while init_game:
     else:
         print('saindo...')
         init_game=False
+    level+=1
