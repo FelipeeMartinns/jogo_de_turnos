@@ -1,4 +1,5 @@
 from charactere import Charactere
+import os
 
 class Items:
 
@@ -41,22 +42,35 @@ DEFESA:\n\
                                                                         COINS= {player.coins}')
         try:
             response=int(input(''))
+            os.system('cls' if os.name == 'nt' else 'clear')
 
             if response==1 and player.coins>= self.value_item_sword:
                 player.damage_ad+=self.damage_ad_sword
                 player.coins-=self.value_item_sword
-                print('AD + 5')
+                print(f'     o item {self.name_sword} foi comprado com suscesso!')
+                print('                           AD + 5')
+                input('                                                        [ENTER-->] ')
+                os.system('cls' if os.name == 'nt' else 'clear')
             elif response==2 and player.coins>= self.value_item_staff:
                 player.damage_ad+=self.damage_ap
                 player.coins-=self.value_item_staff
-                print('AP + 5')
+                print(f'     o item {self.name_staff} foi comprado com suscesso!')
+                print('                           AP + 5')
+                input('                                                        [ENTER-->] ')
+                os.system('cls' if os.name == 'nt' else 'clear')
             elif response==3 and player.coins>= self.value_item_armor_basic:
                 player.armor_ad+=self.armor_ad
                 player.armor_ap+=self.armor_ap
                 player.coins-=self.value_item_armor_basic
-                
+                print(f'     o item {self.name_armor_basic} foi comprado com suscesso!')
+                print('                           DEF AD + 2\n\
+                           DEF AP + 2')
+                input('                                                        [ENTER-->] ')
+                os.system('cls' if os.name == 'nt' else 'clear')
             else:
                 print('ESSE ITEM NÃO ESTÁ DISPONÍVEL NO MOMENTO')
+                input('                                                        [ENTER-->] ')
+                os.system('cls' if os.name == 'nt' else 'clear')
 
         
         except (ValueError):

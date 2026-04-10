@@ -1,9 +1,9 @@
-
+import os
 
 
 class Charactere:
 
-    def __init__(self,name=None,life=3,coins=None,skills=None,armor_ad=None,armor_ap=None,damage_ad=1,damage_ap=None):
+    def __init__(self,name=None,life=3,coins=None,skills=None,armor_ad=None,armor_ap=None,damage_ad=1,damage_ap=None,defesa=None,level=None):
         if name is None:
             self.name='player'
         else:
@@ -33,18 +33,30 @@ class Charactere:
             self.damage_ap=0
         else:
             self.damage_ap=damage_ap
+        
+        self.defesa=defesa
+        self.level=level
 
     def creat_caractere(self):
 
         while True:
+            print('\n\n\n\n\n')
+            print('  🐒 ')
+            print('\n\n\n\n\n')
             self.name=input('Digite seu nome:\n')
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print('\n\n\n\n\n')
+            print('  🐒 ')
+            print('\n\n\n\n\n')
             confirm= input(f'você confimar o nome {self.name} ? [S]im ou [N]ão').upper()
             if confirm.startswith('S') == True:
+                os.system('cls' if os.name == 'nt' else 'clear')
                 break
     def status(self):
 
-        return f'{self.name}\n\
+        return f'{self.name}     🐒\n\
 ATAQUE FÍSICO: {self.damage_ad}\n\
 ATAQUE MÁGICO: {self.damage_ap}\n\
 DEFESA: {self.armor_ad} AD | {self.armor_ap} AP\n\
-SKILLS: {self.skills}'
+SKILLS: {self.skills}\n\
+DINHEIRO: {self.coins}'

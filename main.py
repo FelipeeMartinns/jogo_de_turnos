@@ -1,21 +1,25 @@
 from levels import Levels
 from charactere import Charactere
-from enemy import Enemy
 from items import Items
+import os
 
 
 init_game=True
 
-player=Charactere()
+level=1
+player=Charactere(level=1)
 player.creat_caractere()
-player.coins=10
-enemy=Enemy('monstro',3,1,damage_ad=1,weakness='fogo',coins=5)
+player.coins=100
+
 while init_game:
     
-    level=1
-    response=int(input(f'Deseja prosseguir para o level {level} ou ir a loja? [1]para prosseguir e [2]para abrir a loja ou [3] para exibir os status'))
+    response=int(input(f'Deseja prosseguir para o level {player.level} ou fazer outra coisa?\n\
+[1]para prosseguir\n\
+[2]para abrir a loja\n\
+[3]para exibir os status'))
+    os.system('cls' if os.name == 'nt' else 'clear')
     if response==1:
-        Levels(player,enemy).selector_level(level)
+        Levels(player).selector_level(player.level)
     elif response==2:
         Items().buy(player)
     elif response==3:
@@ -23,4 +27,3 @@ while init_game:
     else:
         print('saindo...')
         init_game=False
-    level+=1
