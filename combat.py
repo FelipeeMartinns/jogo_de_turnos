@@ -2,6 +2,7 @@ from charactere import Charactere
 from enemy import Enemy
 import random
 import os
+import musicas
 
 class Combat:
 
@@ -34,6 +35,7 @@ class Combat:
             print('\n\n\n\n\n')
             print('  🙉💥🦤')
             print('\n\n\n\n\n')
+            musicas.som_dano.play()
             print('vc atacou o monstro!')
             self.enemy.life-=self.player.damage_ad
             self.player.defesa=False
@@ -54,6 +56,7 @@ class Combat:
             print('\n\n\n\n\n')
             print('vc pulou o turno!')
         input('                                                        [ENTER-->] ')
+        musicas.som_errou.play()
 
     def atack_enemy(self):
         print('life')
@@ -69,6 +72,7 @@ class Combat:
                 print('\n\n\n\n\n')
                 print('🙊💫🦤  ')
                 print('\n\n\n\n\n')
+                musicas.som_defesa.play()
                 print('Monstro tentou acertar um golpe em você mas você defendeu!')
             else:
                 print('life')
@@ -76,6 +80,7 @@ class Combat:
                 print('\n\n\n\n\n')
                 print('🙉💥🦤  ')
                 print('\n\n\n\n\n')
+                musicas.som_dano.play()
                 print('Monstro acertou um golpe em você!')
                 self.player.life-=self.enemy.damage_ad
         else:
@@ -84,6 +89,7 @@ class Combat:
             self.life_bar()
             print('\n\n\n\n\n')
             print('🦤  🙉 ')
+            musicas.som_errou.play()
             print('\n\n\n\n\n')
             
             print('Monstro tentou acertar um golpe em você e errou!')

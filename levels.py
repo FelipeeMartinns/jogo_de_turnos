@@ -3,6 +3,7 @@ import os
 import combat
 import inimigos
 import charactere
+import musicas
 
 class Levels:
 
@@ -24,12 +25,15 @@ class Levels:
         os.system('cls' if os.name == 'nt' else 'clear')
         print(f'MONSTRO- {self.enemy_talk[0]}\n\n\n')
         input('     O                                                  [ENTER-->] ')
+        musicas.som_clik.play()
         os.system('cls' if os.name == 'nt' else 'clear')
         print(f'{self.player.name}- {self.charactere_talk[0]}\n\n\n')
         input('                           O                            [ENTER-->] ')
+        musicas.som_clik.play()
         os.system('cls' if os.name == 'nt' else 'clear')
         print(f'MONSTRO- É O QUE VEREMOS!\n\n\n')
         input('                                                   O    [ENTER-->] ')
+        musicas.som_clik.play()
         os.system('cls' if os.name == 'nt' else 'clear')
         print('====================VOCÊ INICIOU UM COMBATE!====================')
         fase_1=combat.Combat(self.player,self.enemy)
@@ -39,6 +43,8 @@ class Levels:
             fase_1.atack_enemy()
             os.system('cls' if os.name == 'nt' else 'clear')
         if self.player.life==0:
+            musicas.parar_musica()
+            musicas.musica_morreu()
             print('life')
             print('🕸️')
             print('\n\n\n\n\n')
@@ -48,25 +54,32 @@ class Levels:
             self.player.level=1
             self.player.life=3
             self.enemy.life=3
+            input('                                                        [ENTER-->] ')
+            musicas.som_clik.play()
+            os.system('cls' if os.name == 'nt' else 'clear')
         else:
+            musicas.parar_musica()
+            musicas.som_vitoria.play()
             print('VOCÊ DERROTOU O MONSTRO')
             self.player.coins+=self.enemy.coins
             print(f'você recebeu {self.enemy.coins} de ouro por esse abate!')
             input('                                                   O    [ENTER-->] ')
+            musicas.som_clik.play()
             os.system('cls' if os.name == 'nt' else 'clear')
             self.player.level=2
 
     def level_2(self,enemy2=inimigos.enemy2):
         self.enemy2=enemy2
-        self.talks=[f'você conseguiu derrotar meu irmão \
-mais novo e burro, mas nunca conseguirá\
-me vencer {self.player.name}',f'kkkkk',
-f'do que você está rindo?',f'estou rindo dessa sua\
-cara de pamonha que eu vou pisar em cima com minha\
-bota suja de merda!',f'ORA SEU FILHO DA PUTA INSOLENTE!!!']
+        self.talks=[f'{inimigos.enemy2.name}-Você conseguiu derrotar meu irmão \
+mais novo e burro, mas nunca conseguirá \
+me vencer {self.player.name}',f'{self.player.name}-kkkkk',
+f'{inimigos.enemy2.name}- Do que você está rindo?',f'{self.player.name}-Estou rindo dessa sua \
+cara de SHIBATA! que eu vou ter que pisar com minha \
+bota suja de merda!',f'{inimigos.enemy2.name}-ORA SEU FILHO DA PUTA INSOLENTE!!!']
         for talk in self.talks:
             print(talk)
             input('                                                        [ENTER-->] ')
+            musicas.som_clik.play()
             os.system('cls' if os.name == 'nt' else 'clear')
 
         print('====================VOCÊ INICIOU UM COMBATE!====================')
@@ -77,17 +90,29 @@ bota suja de merda!',f'ORA SEU FILHO DA PUTA INSOLENTE!!!']
             fase_2.atack_enemy()
             os.system('cls' if os.name == 'nt' else 'clear')
             if self.player.life<=0:
+                musicas.parar_musica()
+                musicas.musica_morreu()
                 print('life')
                 print('🕸️')
                 print('\n\n\n\n\n')
                 print('👻  🦤')
                 print('\n\n\n\n\n')
                 print('VOCÊ MORREU , BRUTAL')
+                self.player.level=2
+                self.player.life=3
+                self.enemy2.life=10
+                input('                                                        [ENTER-->] ')
+                musicas.som_clik.play()
+                os.system('cls' if os.name == 'nt' else 'clear')
+                break
             if self.enemy2.life <=0:
+                musicas.parar_musica()
+                musicas.som_vitoria.play()
                 print('VOCÊ DERROTOU O MONSTRO')
                 self.player.coins+=self.enemy2.coins
                 print(f'você recebeu {self.enemy2.coins} de ouro por esse abate!')
                 input('                                                   O    [ENTER-->] ')
+                musicas.som_clik.play()
                 os.system('cls' if os.name == 'nt' else 'clear')
                 
 

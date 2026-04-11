@@ -1,5 +1,6 @@
 from charactere import Charactere
 import os
+import musicas
 
 class Items:
 
@@ -7,18 +8,19 @@ class Items:
         self.sword()
         self.staff()
         self.armor_basic()
+        self.calice()
     
     def sword(self):
         self.name_sword='espada'
         self.value_item_sword= 10
-        self.damage_ad_sword=5
-        self.description_sword='uma espadada normal que aumenta seu dano fisico em 5'
+        self.damage_ad_sword=1
+        self.description_sword='uma espadada normal que aumenta seu dano fisico em 1'
 
     def staff(self):
         self.name_staff='cajado'
         self.value_item_staff=10
-        self.damage_ap=5
-        self.description_staff='um cajado comum que aumenta seu dano magico em 5'
+        self.damage_ap=1
+        self.description_staff='um cajado comum que aumenta seu dano magico em 1'
 
     def armor_basic(self):
         self.name_armor_basic='armadura'
@@ -26,6 +28,14 @@ class Items:
         self.armor_ad=2
         self.armor_ap=2
         self.description_armor_basic='uma armadura normal que aumenta sua resistencia fisica e mágica em 2'
+
+    def calice(self):
+        self.name_calice='CALICE SAGRADO'
+        self.value_calice=10
+        self.life=1
+        self.description_calice='um item sagrado que recupera sua vida em 1, caso sua vida esteja \n\
+cheia \
+ele aumenta sua vida maxima temporariamente'
 
     def buy(self,player):
 
@@ -38,10 +48,13 @@ ATAQUE MÁGICO:\n\
 {self.value_item_staff} COINS\n[BUY->[2]<-]\n\n\
 DEFESA:\n\
 {self.name_armor_basic} -- {self.description_armor_basic}\n\
-{self.value_item_armor_basic} COINS\n[BUY->[3]<-]\n\n\n\
+{self.value_item_armor_basic} COINS\n[BUY->[3]<-]\n\n\
+{self.name_calice} -- {self.description_calice}\n\
+{self.value_calice} COINS\n[BUY->[4]<-]\n\n\n\
                                                                         COINS= {player.coins}')
         try:
             response=int(input(''))
+            musicas.som_compra.play()
             os.system('cls' if os.name == 'nt' else 'clear')
 
             if response==1 and player.coins>= self.value_item_sword:
@@ -50,6 +63,7 @@ DEFESA:\n\
                 print(f'     o item {self.name_sword} foi comprado com suscesso!')
                 print('                           AD + 5')
                 input('                                                        [ENTER-->] ')
+                musicas.som_clik.play()
                 os.system('cls' if os.name == 'nt' else 'clear')
             elif response==2 and player.coins>= self.value_item_staff:
                 player.damage_ad+=self.damage_ap
@@ -57,6 +71,7 @@ DEFESA:\n\
                 print(f'     o item {self.name_staff} foi comprado com suscesso!')
                 print('                           AP + 5')
                 input('                                                        [ENTER-->] ')
+                musicas.som_clik.play()
                 os.system('cls' if os.name == 'nt' else 'clear')
             elif response==3 and player.coins>= self.value_item_armor_basic:
                 player.armor_ad+=self.armor_ad
@@ -66,10 +81,17 @@ DEFESA:\n\
                 print('                           DEF AD + 2\n\
                            DEF AP + 2')
                 input('                                                        [ENTER-->] ')
+                musicas.som_clik.play()
                 os.system('cls' if os.name == 'nt' else 'clear')
+            elif response==4 and player.coins>= self.value_calice:
+                player.life+=1
+                player.coins-=self.value_calice
+                print(f'     o item {self.name_calice} foi comprado com suscesso!')
+                print(f'                  VIDA ATUAL= {player.life}')
             else:
                 print('ESSE ITEM NÃO ESTÁ DISPONÍVEL NO MOMENTO')
                 input('                                                        [ENTER-->] ')
+                musicas.som_clik.play()
                 os.system('cls' if os.name == 'nt' else 'clear')
 
         

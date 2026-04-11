@@ -1,5 +1,5 @@
 import os
-
+import musicas
 
 class Charactere:
 
@@ -43,12 +43,14 @@ class Charactere:
             print('\n\n\n\n\n')
             print('  🐒 ')
             print('\n\n\n\n\n')
-            self.name=input('Digite seu nome:\n')
+            self.name=input('Digite seu nome:\n').upper()
+            musicas.som_clik.play()
             os.system('cls' if os.name == 'nt' else 'clear')
             print('\n\n\n\n\n')
             print('  🐒 ')
             print('\n\n\n\n\n')
             confirm= input(f'você confimar o nome {self.name} ? [S]im ou [N]ão').upper()
+            musicas.som_clik.play()
             if confirm.startswith('S') == True:
                 os.system('cls' if os.name == 'nt' else 'clear')
                 break

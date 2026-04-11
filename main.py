@@ -20,6 +20,7 @@ while init_game:
 [1]para prosseguir\n\
 [2]para abrir a loja\n\
 [3]para exibir os status'))
+    musicas.som_clik.play()
     os.system('cls' if os.name == 'nt' else 'clear')
     if response==1:
         musicas.parar_musica()
